@@ -5,11 +5,12 @@ services:
     platform: linux/x86_64
     image: mysql:5.7
     volumes:
-      - db_data:/var/lib/mysql
+      - .db/db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: banco_teste
+      MYSQL_USER: user
       MYSQL_PASSWORD: password
     networks:
       - mysql-phpmyadmin
@@ -23,7 +24,7 @@ services:
       - "8090:80"
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: password
+      UPLOAD_LIMIT: 2048M
     networks:
       - mysql-phpmyadmin
 
